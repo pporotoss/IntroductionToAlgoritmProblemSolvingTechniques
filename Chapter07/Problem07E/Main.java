@@ -68,7 +68,7 @@ class SortingAlgorithm {
 				// arr[mid]와 자리를 바꾼다
 				swap(arr, mid + 1, i);
 
-				// mid는 증가시킨다 <=> 더 작은 원소의 수가 늘었으므로
+				// mid는 증가시킨다 <=> 더 작은 원소의 수가 늘었으므로 중앙지점이 이동되었다.
 				mid += 1;
 			}
 		}
@@ -109,6 +109,8 @@ class SortingAlgorithm {
 		pivotIndex = mid;   // 피벗은 분할점에 존재한다
 
 		// 피벗 기준으로 좌우를 나누어 별도로 정렬한다
+		// arr[left] ~ arr[mid - 1] 은 p보다 작다.
+		// arr{mid+1] ~ arr[right] 는 p 보다 크거나 같다.
 		quickSort(arr, left, pivotIndex - 1);
 		quickSort(arr, pivotIndex + 1, right);
 	}

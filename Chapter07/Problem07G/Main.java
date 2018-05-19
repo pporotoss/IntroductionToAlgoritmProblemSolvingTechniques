@@ -45,6 +45,7 @@ class Solution {
 		int k = left;
 		while (i <= mid && j <= right) {
 			if (arr[i] <= arr[j]) {
+				// 둘다 같은 값일 때는 A영역에서 먼저 제거해 주어야 count에 가산이 되지 않는다.
 				buffer[k++] = arr[i++];
 			} else {
 

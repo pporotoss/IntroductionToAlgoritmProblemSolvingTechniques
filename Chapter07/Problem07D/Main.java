@@ -59,7 +59,9 @@ class SortingAlgorithm {
 		while (i <= mid && j <= right) {
 			// 두 영역의 남은 원소들 중 더 작은 원소를 차례로 버퍼에 추가한다
 			if (arr[i] <= arr[j]) {
-				buffer[k++] = arr[i++];
+				buffer[k] = arr[i];
+				k++;
+				i++;
 			} else {
 				buffer[k++] = arr[j++];
 			}

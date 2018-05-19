@@ -29,7 +29,7 @@ public class Main {
 				h = histograms[i];
 			}else{ // if ( i == n )
 				// 구현상 편의를 위해 가장 오른쪽에 높이 0까지 가상의 히스토그램 추가
-				h = new Histogram(n,0);
+				h = new Histogram(n,0); // 마지막 막대 계산을 위해 추가.
 			}
 
 			// 이전에 확장중이던 히스토그램들 중, h보다 높이가 높은 히스토그램들은
@@ -39,7 +39,7 @@ public class Main {
 				// 확장중이던 히스토그램
 				Histogram lh = continuedHistograms.pop();
 
-				// 그 이전의 히스토그램 (왼쪽 확장의 끝)
+				// 그 이전의 히스토그램 (왼쪽 확장의 끝) ==> 위에서 pop() 했기때문에.
 				Histogram bh = continuedHistograms.peek();
 
 				// 현재 추가된 h의 바로 왼쪽까지 확장중이었다.
