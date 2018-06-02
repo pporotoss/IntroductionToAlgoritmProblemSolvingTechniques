@@ -17,9 +17,9 @@ public class Main {
 		Queue<State> bfsQueue = new LinkedList<>();
 		for(int i = 1; i <= R; i += 1){
 			for(int j = 1; j <= C; j += 1) {
-				if(tomato[i][j] == RIPE){
+				if(tomato[i][j] == RIPE){ // 익은토마토이면,
 					State state = new State(i, j, 1);
-					bfsQueue.add(state);
+					bfsQueue.add(state); // 큐에 추가.
 				}
 			}
 		}
@@ -29,7 +29,9 @@ public class Main {
 
 			if(current.row < 1 || current.col < 1 || current.row > R || current.col > C){
 				continue;
-			}else if(visited[current.row][current.col] == true){
+			}
+			
+			if(visited[current.row][current.col] == true){
 				continue;
 			}
 
@@ -51,6 +53,7 @@ public class Main {
 					continue;
 				}
 				if(visited[i][j] == false){
+				    // 끝까지 익지 못하는 토마토의 수
 					unripeCount += 1;
 					break;
 				}else{ // tomato[i][j] == RIPE
@@ -59,7 +62,7 @@ public class Main {
 			}
 		}
 
-		if(unripeCount >= 1){
+		if(unripeCount >= 1){ // 익지 못하는 토마토가 하나라도 있으면, -1 반환. ==> 모든 토마토가 익어야 하므로.
 			return -1;
 		}else{
 			return requiredDays;

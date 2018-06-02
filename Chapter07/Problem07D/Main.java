@@ -51,30 +51,32 @@ class SortingAlgorithm {
 	 * @param buffer    병합을 위해 사용 될 임시 공간
 	 */
 	public static void concatOrderedArrays(int[] arr, int left, int mid, int right, int[] buffer) {
-		int i = left;       // 왼쪽 배열의 인덱스 반복자
-		int j = mid + 1;    // 오른쪽 배열의 인덱스 반복자
-		int k = left;       // 버퍼 영역의 인덱스 반복자
+		int leftIndex = left;       // 왼쪽 배열의 인덱스 반복자
+		int rightIndex = mid + 1;    // 오른쪽 배열의 인덱스 반복자
+		int bufferIndex = left;       // 버퍼 영역의 인덱스 반복자
 
 		// 두 범위 모두 하나 이상의 원소가 남은 경우
-		while (i <= mid && j <= right) {
+		while (leftIndex <= mid && rightIndex <= right) {
 			// 두 영역의 남은 원소들 중 더 작은 원소를 차례로 버퍼에 추가한다
-			if (arr[i] <= arr[j]) {
-				buffer[k] = arr[i];
-				k++;
-				i++;
+			if (arr[leftIndex] <= arr[rightIndex]) {
+				buffer[bufferIndex] = arr[leftIndex];
+				bufferIndex++;
+				leftIndex++;
 			} else {
-				buffer[k++] = arr[j++];
+				buffer[bufferIndex] = arr[rightIndex];
+				bufferIndex++;
+				rightIndex++;
 			}
 		}
 
 		// 왼쪽 영역만 원소가 남은 경우
-		while (i <= mid) {
-			buffer[k++] = arr[i++];
+		while (leftIndex <= mid) {
+			buffer[bufferIndex++] = arr[leftIndex++];
 		}
 
 		// 오른쪽 영역만 원소가 남은 경우
-		while (j <= right) {
-			buffer[k++] = arr[j++];
+		while (rightIndex <= right) {
+			buffer[bufferIndex++] = arr[rightIndex++];
 		}
 
 		// 버퍼에 병합 된 배열을 다시 원본 배열에 복사한다

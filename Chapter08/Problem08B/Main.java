@@ -11,7 +11,7 @@ public class Main {
 	 * @return      깊이 우선 탐색으로 탐색된 노드들의 번호 리스트
 	 */
 	public static ArrayList<Integer> getDfsOrder(int N, ArrayList<Integer>[] adj){
-		ArrayList<Integer> visitedNodes = new ArrayList<>();
+		ArrayList<Integer> visitedNodes = new ArrayList<>(); // 인접 노드들의 집합
 
 		Stack<State> dfsStack = new Stack<>();
 		State initialState = new State(1, 1);
@@ -65,7 +65,7 @@ public class Main {
 			visited[current.nodeIndex] = true;
 			visitedNodes.add( current.nodeIndex );
 
-			for(int next : adj[current.nodeIndex]){
+			for(int next : adj[current.nodeIndex]){ // 인접노드들을 한번씩 모두 탐색.
 				if(visited[next] == false){
 					State nextState = new State(next, current.depth + 1);
 					bfsQueue.add(nextState);
@@ -88,6 +88,8 @@ public class Main {
 		for(int i = 0 ; i < M; i += 1){
 			int u = scanner.nextInt();
 			int v = scanner.nextInt();
+			int a = i; // 쓸모없는거. 노란줄 없앨라고 추가.
+			// 양방향 관계이므로 양쪽으로 삽입.
 			adj[u].add(v);
 			adj[v].add(u);
 		}

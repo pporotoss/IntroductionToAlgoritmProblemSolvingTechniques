@@ -4,13 +4,13 @@ import java.util.*;
 
 public class Main {
 	public static final Scanner scanner = new Scanner(System.in);
-	public static final int MAXIMUM_VIRUS = 10000;
+	public static final int MAXIMUM_VIRUS = 100000;
 
 	public static void testCase(int caseIndex) {
 		int targetNumber = scanner.nextInt();
 
-		int[] distance = new int[MAXIMUM_VIRUS + 1];
-		boolean[] visited = new boolean[MAXIMUM_VIRUS + 1];
+		int[] distance = new int[MAXIMUM_VIRUS + 1]; // 최단경로(간선수)
+		boolean[] visited = new boolean[MAXIMUM_VIRUS + 1]; // 방문여부
 
 		State initialState = new State(1, 1);
 		Queue<State> queue = new LinkedList<>();
@@ -28,8 +28,8 @@ public class Main {
 			visited[current.numberOfVirus] = true;
 			distance[current.numberOfVirus] = current.depth - 1;
 
-			State nextIncrease = new State(current.numberOfVirus * 2, current.depth + 1);
-			State nextDecrease = new State(current.numberOfVirus / 3, current.depth + 1);
+			State nextIncrease = new State(current.numberOfVirus * 2, current.depth + 1); // 성공했을때
+			State nextDecrease = new State(current.numberOfVirus / 3, current.depth + 1); // 실패했을때
 
 			queue.add(nextIncrease);
 			queue.add(nextDecrease);

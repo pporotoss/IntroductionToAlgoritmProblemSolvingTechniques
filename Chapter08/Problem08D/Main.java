@@ -31,7 +31,11 @@ public class Main {
 				continue;
 			}
 
+			// 모든 노드 nodeIndex가 한번씩 (== 루트로부터의 최단거리 == current.depth -1)
+			// 루트로부터의 거리가 짧은 순서대로 순환.
 			visited[current.nodeIndex] = true;
+			
+			// 이때의 depth가 곧 거리가 된다.
 			distance[current.nodeIndex] = current.depth - 1;
 
 			for (int next : adj[current.nodeIndex]) {
@@ -42,8 +46,9 @@ public class Main {
 			}
 
 		}
-
-		return distance[dest];
+		
+		// distance[dest] == false 이면, 루트로부터 탐색해서 dest로 도달한적이 없다 ==> 경로가 없다.
+			return distance[dest];
 	}
 
 	public static void main(String[] args) throws Exception {
