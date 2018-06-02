@@ -35,6 +35,10 @@ public class Main {
 				continue;
 			}
 
+			if (tomato[current.row][current.col] == EMPTY) {
+				continue;
+			}
+
 			visited[current.row][current.col] = true;
 			distance[current.row][current.col] = current.depth - 1;
 
