@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Main {
 	public static final Scanner scanner = new Scanner(System.in);
 	public static final int[] deltaX = new int[]{ 0, 0, -1, 1 };
@@ -38,7 +41,7 @@ public class Main {
 						break;
 					}
 				}else if(expectedMove.isIntersectedTo( s ) ){
-					intersected = true;
+					intersected = true; // 하나라도 교차한적 있으면,
 					if(expectedMove.directionType == Segment.DIRECTION_LEFT || expectedMove.directionType == Segment.DIRECTION_RIGHT){
 						int toLeft = Math.abs( expectedMove.origin.x - s.getLeftX() );
 						int toRight = Math.abs( expectedMove.origin.x - s.getRightX() );

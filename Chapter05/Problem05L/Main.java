@@ -10,7 +10,7 @@ public class Main {
 		int N = scanner.nextInt();
 		Timestamp[] logs = new Timestamp[N + 2];
 
-		logs[0] = new Timestamp(-1, "00:00");
+		logs[0] = new Timestamp(-1, "00:00"); // 앞 뒤로 불필요한 시간을 넣어준다.
 		logs[N + 1] = new Timestamp(-1, "48:00");
 		for (int i = 1; i <= N; i += 1) {
 			int teamIndex = scanner.nextInt();
@@ -23,13 +23,15 @@ public class Main {
 		long timeA = 0;
 		long timeB = 0;
 
-		for (int i = 1; i <= N+1; i += 1) {
+		for (int i = 1; i <= N+1; i += 1) { // 끝나는 시간까지 점수 계산위해 N+1까지 반복.
+			// 시간 갱신
 			if (pointA > pointB) {
 				timeA += logs[i - 1].getElapsedTimeTo(logs[i]);
 			} else if (pointA < pointB) {
 				timeB += logs[i - 1].getElapsedTimeTo(logs[i]);
 			}
-
+			
+			// 점수갱신
 			if (logs[i].teamIndex == 1) {
 				pointA += 1;
 			} else if (logs[i].teamIndex == 2) {

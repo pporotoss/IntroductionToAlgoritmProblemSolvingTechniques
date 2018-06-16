@@ -87,6 +87,8 @@ class Knapsack {
 
 		int answer = 0;
 
+		// 총 totalCost 개의 획을 소모하는 문자열들 중에 마지막 글자를 결정해야 한다.
+		// 0~9 를 모두 확인해야 한다.
 		for(int lastDigit = 0 ; lastDigit <= 9 ; lastDigit += 1){
 			// 마지막 글자가 lastDigit인 경우의 수 모두 누적
 			int segments = items[lastDigit].cost;

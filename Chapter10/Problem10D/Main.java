@@ -43,7 +43,6 @@ class Solution {
 		}
 	}
 
-
 	/**
 	 * (0, 0) ~ (lastRow, lastCol)까지만 고려했을 때 문제의 정답
 	 *

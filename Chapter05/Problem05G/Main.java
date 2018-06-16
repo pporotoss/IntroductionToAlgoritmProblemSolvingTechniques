@@ -24,7 +24,7 @@ public class Main {
 				break;
 			}
 
-			while(true){
+			while(true){ // 이동가능한 방향으로 방향전환 때까지 반복
 				Position2D nextPos = robot.getNextPosition();
 				if(isPossible(map, N, nextPos) == true){
 					break;
@@ -35,7 +35,7 @@ public class Main {
 
 			robot.goStraight();
 
-			if(robot.getDirection() == 0 || robot.getDirection() == 2){
+			if(robot.getDirection() == 0 || robot.getDirection() == 2){ // 오른쪽이나 아래로 가는 방향
 				robot.turnNext();
 			}
 		}
@@ -54,7 +54,7 @@ public class Main {
 			return false;
 		}
 
-		if(map[pos.r][pos.c] != 0){
+		if(map[pos.r][pos.c] != 0){ // 이미 방문한 칸이면,
 			return false;
 		}
 

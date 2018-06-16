@@ -64,11 +64,11 @@ class Quilting {
 	 * @return 이때의 최소 부자연스러움
 	 */
 	public int f(int lastRow, int lastCol) {
-		if (lastRow < 0 || lastCol < 0 || lastCol >= c) {
+		if (lastRow < 0 || lastCol < 0 || lastCol >= c) { // 예외케이스
 			return INFINITY;
-		} else if (memo[lastRow][lastCol] != EMPTY) {
+		} else if (memo[lastRow][lastCol] != EMPTY) { // 이미 계산된 케이스
 			return memo[lastRow][lastCol];
-		} else if (lastRow == 0) {
+		} else if (lastRow == 0) { // 첫 행이므로, 이전에 계산된 경로가 없다. 따라서 자기 위치의 픽셀치만 반환.
 			// 마지막 행인 경우 해당 칸의 픽셀 차이만 비교한다
 			int diff = imageA[lastRow][lastCol] - imageB[lastRow][lastCol];
 			return diff * diff;
@@ -79,6 +79,17 @@ class Quilting {
 		int error = diff * diff;
 
 		// 이전 행 까지의 세가지 경우의 수중 최적해와 더한다
+		int caseA = f(lastRow - 1, lastCol - 1);
+		int caseB = f(lastRow - 1, lastCol);
+		int caseC = f(lastRow - 1, lastCol + 1);
+		
+//		if(caseA < caseB && caseB < caseC) {
+//			// 왼쪽 위에서 왔다.
+//		}
+//		else if() {
+//
+//		}
+		
 		int answer = error + MIN(
 				f(lastRow - 1, lastCol - 1),
 				f(lastRow - 1, lastCol),

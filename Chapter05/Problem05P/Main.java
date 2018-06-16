@@ -14,12 +14,12 @@ public class Main {
 	 * @return   서로 다른 세 개의 단어로 fullName을 만들 수 있다면 true, else false
 	 */
 	public static boolean isPossibleName(String fullName, int N, String[] words) {
-
+		
 		// 서로 다른 i, j, k에 대해 (words[i] + words[j] + words[k])로 이름을 만들어보자 .
-		for (int i = 0; i < N; i += 1) {
+		for (int i = 0; i < N; i += 1) { //i가 첫문자열
 			// 모든 접두사 words[i]에 대해
 			String prefix = words[i];
-
+			
 			// 만들고자 하는 이름이 prefix로 시작하지 않는다면 건너뛴다
 			if (fullName.startsWith(prefix) == false) {
 				continue;
@@ -28,16 +28,16 @@ public class Main {
 			for (int k = 0; k < N; k += 1) {
 				// 모든 접미사 words[k]에 대해
 				String suffix = words[k];
-
+				
 				// words[i]와 중복되거나 만들고자 하는 이름의 접미사가 아니라면 건너뛴다.
 				if (i == k || fullName.endsWith(suffix) == false) {
 					continue;
 				}
 
-				for (int j = 0; j < N; j += 1) {
+				for (int j = 0; j < N; j += 1) { // j가 세번째 문자열
 					// 중간 부분 word[sj]에 대해
 					String middle = words[j];
-
+					
 					// 이미 등장한 단어라면 건너뛴다
 					if (i == j || j == k) {
 						continue;
@@ -50,7 +50,11 @@ public class Main {
 					if (fullName.equals(concatenated)) {
 						return true;
 					}
+					
+					
 				}
+				
+				
 			}
 		}
 
@@ -58,7 +62,7 @@ public class Main {
 	}
 
 	public static void testCase(int caseIndex) {
-		int N = scanner.nextInt();
+		int N = scanner.nextInt(); // 재료수
 		String fullName = scanner.next();
 		String[] words = new String[N];
 		for (int i = 0; i < N; i += 1) {

@@ -60,8 +60,8 @@ class FenceRepairing {
 			// 즉, [previousIndex, lastIndex]범위를 모두 한 번에 교체할 때 최소 비용
 			for (int previousIndex = 0; previousIndex <= lastIndex; previousIndex += 1) {
 				double newCost = 0;
-				newCost += Math.sqrt(lastIndex - previousIndex + 1);
-				newCost += f(previousIndex - 1);
+				newCost += Math.sqrt(lastIndex - previousIndex + 1); // 하나의 수리비용
+				newCost += f(previousIndex - 1); // 이전 영역 모두를 수리 마치는 비용
 
 				if (newCost < answer) {
 					answer = newCost;
