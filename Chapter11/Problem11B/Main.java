@@ -1,3 +1,5 @@
+package Chapter11.Problem11B;
+
 import java.io.*;
 import java.util.*;
 import java.lang.*;
@@ -59,16 +61,19 @@ class Solution {
 				// 그렇지 않으면 왼쪽으로 이동시킨다. 이 때, 접할정도까지만 이동시킨다.
 				leftEnd = Math.max(robots[i].rightBound - distance, leftEnd);
 			} else {
+				// leftEnd > robots[i].leftBound
 				// 로봇이 이미 감시 완료된 영역을 포함하고 있을 때
 
 				// 공백이 생기지 않는 선에서 로봇을 오른쪽으로 최대 D만큼 이동시킨다.
 				int distance = Math.min(D, leftEnd - robots[i].leftBound);
 
 				// 이동시킨 후 새로 감시완료된 영역을 반영한다.
+				// 오른쪽으로 최대 거리만큼 이동 후에 감시 영역을 덮을 수 있는지 판단
 				leftEnd = Math.max(robots[i].rightBound + distance, leftEnd);
 			}
 
 			// [0, rightEnd]까지 모두 감시가 완료된 경우 true, 아니면 false
+            // 이동하지 말아야할 로봇이 이동하는것 방지
 			if(leftEnd >= rightEnd){
 				break;
 			}
@@ -86,7 +91,7 @@ class Solution {
 	 * @return
 	 */
 	public static int getMinimumMoveDistance(int N, int L, Robot[] robots) {
-		Arrays.sort(robots);
+		Arrays.sort(robots); // 왼쪽부터 정렬
 		long lowerBound = 0;					// 전혀 이동이 필요 없는 경우
 		long upperBound = Integer.MAX_VALUE;	// 이론상 최대 이동 가능 거리
 

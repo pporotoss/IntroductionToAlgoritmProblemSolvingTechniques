@@ -1,6 +1,8 @@
-import java.io.*;
-import java.util.*;
-import java.lang.*;
+package Chapter11.Problem11F;
+
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
 
 
 public class Main {
@@ -58,15 +60,15 @@ class Solution {
 
 		// 간선이 없는 그래프에서 시작한다.
 		// 그룹의 수는 N이다.
-		DisjointSet disjointSet = new DisjointSet(N);
-		int components = N;
+		DisjointSet disjointSet = new DisjointSet(N); // 전부 다른 그룹
+		int components = N; // 전부 간선이 없기 때문에 n개의 독립된 Component이다.
 
 		// 임의의 순서로 구성된 간선들에 대해 차례로 Spanning Tree를 만들어 나간다.
 		for (int i = 0; i < M; i += 1) {
 			int u = edges[i].nodeU;
 			int v = edges[i].nodeV;
 
-			if (disjointSet.find(u) != disjointSet.find(v)) {
+			if (disjointSet.find(u) != disjointSet.find(v)) {// 서로 다른 Component를 가로지르는 간선
 				// 두 정점을 이어도 Tree가 된다면 이어준다
 				disjointSet.union(u, v);
 
@@ -112,7 +114,7 @@ class Solution {
 
 		// 우선 순위에 따라서 정렬한다.
 		Arrays.sort(edges);
-
+		
 		// 결과적으로 모든 간선이 임의의 순서로 셔플된다.
 	}
 }

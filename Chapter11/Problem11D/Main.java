@@ -1,3 +1,5 @@
+package Chapter11.Problem11D;
+
 import java.io.*;
 import java.util.*;
 import java.lang.*;
@@ -67,6 +69,7 @@ class Solution {
 					for (Circle c : coverages) {
 						if (c.contains(x, y) == true) {
 							isInside = true;
+//							coverageCount += 1;
 							break;
 						}
 					}

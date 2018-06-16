@@ -1,6 +1,7 @@
-import java.io.*;
-import java.util.*;
-import java.lang.*;
+package Chapter10.Problem10A;
+
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
 

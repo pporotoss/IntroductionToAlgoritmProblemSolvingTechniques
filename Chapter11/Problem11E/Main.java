@@ -46,7 +46,7 @@ public class Main {
 	 * @return 배열 전체를 blockSize단위로 나눈 범위들의 배열
 	 */
 	public static Range[] splitIntoBlocks(int N, int[] data, int blockSize) {
-		int length = 1 + N / blockSize;
+		int length = 1 + N / blockSize; // 정확할 필요 없음. 갯수가 적지만 않으면 된다.
 		Range[] blocks = new Range[length];
 
 		for (int i = 0; i < blocks.length; i += 1) {
@@ -73,8 +73,8 @@ public class Main {
 	public static void updatePopulation(Range[] blocks, int index, int newValue) {
 		int blockSize = blocks[0].size;
 
-		int blockIndex = index / blockSize;
-		int unitIndex = index % blockSize;
+		int blockIndex = index / blockSize; // 블럭의 인덱스
+		int unitIndex = index % blockSize; // 블럭 내부 배열 인덱스
 
 		blocks[blockIndex].update(unitIndex, newValue);
 	}
@@ -124,20 +124,22 @@ public class Main {
 	 */
 	public static int getSumOfPopulations(Range[] blocks, int leftEnd, int rightEnd) {
 		int blockSize = blocks[0].size;
-
+		
+		// 블럭 단위로 사용위해 왼쪽 끝 블럭과 오른쪽 끝 블럭 인덱스 필요.
 		int leftBlockIndex = leftEnd / blockSize;
 		int rightBlockIndex = rightEnd / blockSize;
 
-		if (leftBlockIndex == rightBlockIndex) {
+		if (leftBlockIndex == rightBlockIndex) { // 고려해야할 블럭이 하나뿐인 경우
 			int leftIndex = leftEnd % blockSize;
 			int rightIndex = rightEnd % blockSize;
 			return blocks[leftBlockIndex].getSum(leftIndex, rightIndex);
 		}
 
+		// 왼쪽 끝 블럭과 오른쪽 끝 블럭은 부분값만 사용.
 		int sumValue = blocks[leftBlockIndex].getMax(leftEnd % blockSize, blockSize - 1)
 				+ blocks[rightBlockIndex].getMax(0, rightEnd % blockSize);
 
-
+		// 중간 블럭들은 전체 값 사용.
 		for (int blockIndex = leftBlockIndex + 1; blockIndex <= rightBlockIndex - 1; blockIndex += 1) {
 			sumValue += blocks[blockIndex].getMax(0, blockSize - 1);
 		}

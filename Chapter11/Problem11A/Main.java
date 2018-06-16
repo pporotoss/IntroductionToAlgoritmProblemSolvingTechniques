@@ -1,3 +1,5 @@
+package Chapter11.Problem11A;
+
 import java.io.*;
 import java.util.*;
 import java.lang.*;
@@ -75,6 +77,7 @@ class Solution{
 		long totalBudget = M;	// 총 예산
 
 		for(int i = 0 ; i < N ; i += 1){ // 모든 열차에 대해
+			
 			if(minimumSpeed <= S[i]){ // 이미 하한 속도를 넘겼다면 건너뛴다.
 				return false;
 			}

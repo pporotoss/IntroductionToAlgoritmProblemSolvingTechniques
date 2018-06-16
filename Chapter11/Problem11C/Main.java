@@ -1,3 +1,5 @@
+package Chapter11.Problem11C;
+
 import java.io.*;
 import java.util.*;
 import java.lang.*;
@@ -45,7 +47,7 @@ class Solution {
 	public static double getMaximumPassableRadius(int N, double W, Sensor[] sensors) {
 		double lowerBound = 0;
 		double upperBound = 100000;
-
+		
 		// 특정 횟수만큼 정밀도를 높여가며 최적의 반지름을 찾아간다
 		for (int i = 0; i < ITERATION_COUNT; i += 1) {
 			// 범위의 중앙값을 반지름으로 사용한다
@@ -88,13 +90,15 @@ class Solution {
 			sensorNodes[i] = new Node(i);
 
 			// 해당 센서와 왼쪽 벽 사이의 거리가 2R보다 작다면? 그 사이는 물체가 통과할 수 없다
-			if (sensors[i].xPos - sensors[i].radius - 2 * R < 0) {
+			if (sensors[i].xPos - sensors[i].radius < 2 * R) {
+//			if (sensors[i].xPos - sensors[i].radius - 2 * R < 0) {
 				leftWall.adjacentNodes.add(sensorNodes[i]);
 				sensorNodes[i].adjacentNodes.add(leftWall);
 			}
 
 			// 해당 센서와 오른쪽 벽 사이의 거리가 2R보다 작다면? 그 사이는 물체가 통과할 수 없다
-			if (sensors[i].xPos + sensors[i].radius + 2 * R > W) {
+//			if (sensors[i].xPos + sensors[i].radius + 2 * R > W) {
+			if (W - sensors[i].xPos - sensors[i].radius < 2 * R) {
 				rightWall.adjacentNodes.add(sensorNodes[i]);
 				sensorNodes[i].adjacentNodes.add(rightWall);
 			}
