@@ -1,3 +1,5 @@
+package Chapter05.Problem05E;
+
 import java.io.*;
 import java.lang.*;
 import java.util.*;

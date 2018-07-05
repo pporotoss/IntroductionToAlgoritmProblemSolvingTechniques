@@ -1,3 +1,5 @@
+package Chapter05.Problem05B;
+
 import java.io.*;
 import java.lang.*;
 import java.util.*;
@@ -24,8 +26,8 @@ public class Main {
 			int maxRow = r + K - 1;
 			int sumOfWastes = 0;
 
-			for (int c = 0; c < N; c += 1) {
-				int minCol = c - K + 1;
+			for (int c = K; c < N; c += 1) {
+				int minCol = c - K;
 				int maxCol = c;
 
 				for(int i = minRow; i <= maxRow; i+= 1){
@@ -36,8 +38,8 @@ public class Main {
 						sumOfWastes -= 1;
 					}
 				}
-
 			}
+			answer = sumOfWastes;
 		}
 
 		System.out.println(answer);
