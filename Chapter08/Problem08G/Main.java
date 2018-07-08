@@ -1,3 +1,5 @@
+package Chapter08.Problem08G;
+
 import java.io.*;
 import java.lang.*;
 import java.util.*;
