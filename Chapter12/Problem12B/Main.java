@@ -1,6 +1,7 @@
-import java.io.*;
-import java.util.*;
-import java.lang.*;
+package Chapter12.Problem12B;
+
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 	public static final Scanner scanner = new Scanner(System.in);
@@ -54,21 +55,22 @@ class KMP {
 
 		ArrayList<Integer> matchedIndexes = new ArrayList<>();
 
-    while (begin + matched < N) {	// 대상 문자열을 초과하지 않는 동안
-			// 현재 위치 문자가 패턴과 일치하는 경우
-			if (matched < M && S.charAt(begin + matched) == P.charAt(matched)) {
+        while (begin + matched < N) {	// 대상 문자열을 초과하지 않는 동안
+        	// P.charAt(matched) == S.charAt(matched) 여부 확인
+	        
+			if (matched < M && S.charAt(begin + matched) == P.charAt(matched)) { // 현재 위치 문자가 패턴과 일치하는 경우
 				matched += 1;
-				if (matched == M) { // M개의 글자가 일치한다 <=> 이 위치에서 패턴이 등장한다
+				if (matched == M) { // M개의 글자가 일치한다 <=> 이 위치에서 패턴이 등장한다 S[begin] 부터 패턴 P가 등장한다.
 					matchedIndexes.add(begin);
 				}
 			} else {
-				if (matched == 0) {
-					// 한 글자도 일치하지 않았다면 그냥 다음 칸으로 이동한다
+				if (matched == 0) { // 한 글자도 일치하지 않았다면 그냥 다음 칸으로 이동한다
 					begin += 1;
-				} else {
-					// 일부분이 일치한 후 글자가 틀린 경우
-					begin += matched - PI[matched - 1];	// 다음 후보 위치로 이동한다
+				} else { // 일부분이 일치한 후 글자가 틀린 경우
+					// 기존에 일치했던 문자를 정보로 불필요한 위치를 건너 뛴다.
+					begin += matched - PI[matched - 1];	// 다음 후보 위치로 이동한다. 등장 가능한 위치로 이동
 					matched = PI[matched - 1];			// 해당 부분에서 접두사의 길이만큼은 비교를 생략한다.
+														// 이미 알고 있는 문자는 건너 뛴다.
 				}
 			}
 		}

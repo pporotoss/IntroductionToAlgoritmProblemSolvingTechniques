@@ -1,3 +1,5 @@
+package Chapter12.Problem12A;
+
 import java.io.*;
 import java.util.*;
 import java.lang.*;
@@ -55,14 +57,15 @@ class RabinKarp {
 		if (hashP == hashS) {    // 두 해시값이 같다면, 가장 앞 부분 문자열은 패턴과 일치한다 (편의상 따로 처리)
 			matchedIndexes.add(0);
 		}
-
+  
+		// 두번째부터 시작.
 		for (int begin = 1; begin + M - 1 < N; begin += 1) {
 			// 각 부분 문자열 [ begin, begin + M - 1 ] 에 대해
 
 			// 이전 영역의 해시 값을 사용하여, 이번 범위의 해시 값을 계산한다 - O(f(M)) = O(1)
-			hashS = (hashS - S.charAt(begin - 1) * weights[M - 1]) % MODULAR;
-			hashS = (hashS * BASE) % MODULAR;
-			hashS = (hashS + S.charAt(begin + M - 1) * weights[0]) % MODULAR;
+			hashS = (hashS - S.charAt(begin - 1) * weights[M - 1]) % MODULAR; // 가장 왼쪽 글자 해시값 계산
+			hashS = (hashS * BASE) % MODULAR; // B에 대해서 한 지수씩 시프트
+			hashS = (hashS + S.charAt(begin + M - 1) * weights[0]) % MODULAR; // 가장 오른쪽 글자 해시값 계산
 			if (hashS < 0) {	// 모듈러 값이 음수가 되는 경우 예외처리
 				hashS += MODULAR;
 			}
@@ -115,6 +118,8 @@ class RabinKarp {
 		final int M = P.length();
 
 		for (int i = 0; i < M; i += 1) {
+			// hash ==> (i번째 글자 값) * B^(M - i - 1)
+			// weight[i] = B^(M - i - 1)
 			int position = M - i - 1;
 
 			hash += P.charAt(i) * weights[position];
